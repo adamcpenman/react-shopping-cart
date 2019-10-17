@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import data from './data';
 import { ProductContext } from "../src/contexts/ProductContext";
 import { CartContext } from "./contexts/CartContext";
+import { useLocalStorage } from "./utils/useLocalStorage";
 
 // Components
 import Navigation from './components/Navigation';
@@ -11,11 +12,12 @@ import ShoppingCart from './components/ShoppingCart';
 
 function App() {
 	const [products] = useState(data);
-	const [cart, setCart] = useState([]);
+	const [cart, setCart] = useLocalStorage("cart", []);
 
 	const removeItem = id => {
-		const filterCart = cart.filter(cart => cart.id !== id);
-		return setCart(filterCart)
+		//const filterCart =
+		setCart (cart.filter(cart => cart.id !== id));
+		// return setCart(filterCart)
 	}
 
 	const addItem = item => {
